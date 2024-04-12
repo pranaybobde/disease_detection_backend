@@ -28,6 +28,10 @@ CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 async def ping():
     return "Hello, I am alive"
 
+@app.get("/")
+def home():
+    return {"Hello": "World from FastAPI"}
+
 def read_file_as_image(data) -> np.ndarray:
     image = np.array(Image.open(BytesIO(data)))
     return image
@@ -56,5 +60,5 @@ async def predict(
             'confidence': float(confidence)
         }
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host='localhost', port=8000)
+if __name__ == "__main__":
+    uvicorn.run(app, host='localhost', port=8000)
